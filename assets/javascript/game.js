@@ -23,7 +23,8 @@ var characterArray = [mace, boba, anakin, yoda, R2D2, jarJar];
 
 // This function creates character tiles to add to the various sections. 
 function generateTile(character_name) {
-	characterTile = '<div class="character-tile"><p>' + this.name + '</p><br><img src="assets/images/' + this.imageSource + '" class="character-image"><p>' + this.healthPoints + '</p></div>';
+	characterTile = '<div class="character-tile"><p>' + character_name.name + '</p><br><img src="assets/images/' + character_name.imageSource + '" class="character-image"><p>' + character_name.healthPoints + '</p></div>';
+	console.log(characterTile);
 	return characterTile;
 }
 
@@ -31,9 +32,10 @@ function initiatePossibleChars(){
 	for (var i = 0; i < characterArray.length; i++){
 		//var div = document.createElement('div');
 		//document.getElementById("possible-characters").appendChild(generateTile(characterArray[i]));
-		$('body')
+		$('#possible-characters')
 			.append(generateTile(characterArray[i]));
 	};
 };
 
-document.write(generateTile(mace));
+//console.log(mace.imageSource);
+// document.write(generateTile(mace));
