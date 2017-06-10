@@ -15,12 +15,9 @@ var yoda = new character("Yoda", 180, 15, 25, "yoda.jpg");
 var R2D2 = new character("R2D2", 110, 12, 20, "r2d2.png");
 var jarJar = new character("Jar Jar", 100, 12, 24, "jar-jar.jpg");
 
-function generateImagePath(imageName){
-	var imagePath =  "assets/images/" + imageName;
-	return imagePath;
-}
 
 // This function creates character tiles to add to the various sections. 
 function generateTile(character_name) {
-	
+	characterTile = '<div class="character-tile"><p>' + this.name + '</p><br><img src="assets/images/' + this.imageSource + '" class="character-image"><p>' + healthPoints + '</p></div>';
+	return characterTile;
 }
