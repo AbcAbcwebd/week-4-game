@@ -22,20 +22,20 @@ while ( true ) {
 
 
 	OneHealth = 100 //prompt("Jar Jar's health.");
-	OneBaseAt = 7 //prompt("Jar Jar's base attack.");
+	OneBaseAt = 13 //prompt("Jar Jar's base attack.");
 	OneCountAt = 5 //prompt("Jar Jar's counter attack.");
 
 	TwoHealth = 120 //prompt("Boba Fett's health.");
-	TwoBaseAt = 8 //prompt("Boba Fett's base attack.");
+	TwoBaseAt = 14 //prompt("Boba Fett's base attack.");
 	TwoCountAt = 7 //prompt("Boba Fett's counter attack.");
 
-	ThreeHealth = 150 //prompt("Anakin's health.");
-	ThreeBaseAt = 9 //prompt("Anakin's base attack.");
-	ThreeCountAt = 20 //prompt("Anakin's counter attack.");
+	ThreeHealth = 140 //prompt("Anakin's health.");
+	ThreeBaseAt = 15 //prompt("Anakin's base attack.");
+	ThreeCountAt = 23 //prompt("Anakin's counter attack.");
 
-	FourHealth = 180 //prompt("Yoda's health.");
-	FourBaseAt = 10 //prompt("Yoda's base attack.");
-	FourCountAt = 25 //prompt("Yoda's count attack.");
+	FourHealth = 160 //prompt("Yoda's health.");
+	FourBaseAt = 16 //prompt("Yoda's base attack.");
+	FourCountAt = 24 //prompt("Yoda's count attack.");
 
 
 	// This simulates game plays in order to test if the above values will work in the context of the game.
@@ -52,7 +52,7 @@ while ( true ) {
 		// This checks if character one can initially defeat character two.
 		while ( OneTestHealth > 0 && TwoTestHealth > 0) {
 			TwoTestHealth = TwoTestHealth - OneTestStrength;
-			OneTestStrength = OneTestStrength * 2;
+			OneTestStrength = OneTestStrength + OneBaseAt;
 			OneTestHealth = OneTestHealth - TwoCountAt;
 		}
 
@@ -63,7 +63,7 @@ while ( true ) {
 		// This checks if character one can go on to defeat character three.
 		while ( OneTestHealth > 0 && ThreeTestHealth > 0) {
 			ThreeTestHealth = ThreeTestHealth - OneTestStrength;
-			OneTestStrength = OneTestStrength * 2;
+			OneTestStrength = OneTestStrength + OneBaseAt;
 			OneTestHealth = OneTestHealth - ThreeCountAt;
 		}
 
@@ -73,9 +73,8 @@ while ( true ) {
 
 		// This checks if character one can go on to defeat character four.
 		while ( OneTestHealth > 0 && FourTestHealth > 0) {
-			alert(OneTestStrength);
 			FourTestHealth = FourTestHealth - OneTestStrength;
-			OneTestStrength = OneTestStrength * 2;
+			OneTestStrength = OneTestStrength + OneBaseAt;
 			OneTestHealth = OneTestHealth - FourCountAt;
 		}
 
@@ -89,13 +88,21 @@ while ( true ) {
 		FourTestStrength = FourBaseAt;
 
 		while ( FourTestHealth > 0 && ThreeTestHealth > 0) {
+			console.log("Four's strength: " + FourTestStrength);
+			console.log("Four health: " + FourTestHealth);
+			console.log("Three health: " + ThreeTestHealth);
 			ThreeTestHealth = ThreeTestHealth - FourTestStrength;
-			FourTestStrength = FourTestStrength * 2;
+			FourTestStrength = FourTestStrength + FourBaseAt;
 			FourTestHealth = FourTestHealth - ThreeCountAt;
 		}
 
 		if ( FourTestHealth < ThreeTestHealth) {
 			fourLoseThree = true;
+			console.log("Four health: " + FourTestHealth);
+			console.log("Three health: " + ThreeTestHealth);
+		} else {
+			console.log("Four health: " + FourTestHealth);
+			console.log("Three health: " + ThreeTestHealth);
 		}
 
 	if (
