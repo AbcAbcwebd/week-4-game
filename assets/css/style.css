@@ -3,6 +3,10 @@
 	background: gray;
 }
 
+.character-tile:hover {
+	background: green;
+}
+
 .character-image {
 	max-width: 80%;
 }
