@@ -21,21 +21,21 @@ while ( true ) {
 //	FourCountAt = Math.floor((Math.random() * 30) + 1);
 
 
-	OneHealth = 50 //prompt("Jar Jar's health.");
-	OneBaseAt = 2 //prompt("Jar Jar's base attack.");
-	OneCountAt = prompt("Jar Jar's counter attack.");
+	OneHealth = 100 //prompt("Jar Jar's health.");
+	OneBaseAt = 7 //prompt("Jar Jar's base attack.");
+	OneCountAt = 5 //prompt("Jar Jar's counter attack.");
 
-	TwoHealth = 60 //prompt("Boba Fett's health.");
-	TwoBaseAt = 3 //prompt("Boba Fett's base attack.");
-	TwoCountAt = prompt("Boba Fett's counter attack.");
+	TwoHealth = 120 //prompt("Boba Fett's health.");
+	TwoBaseAt = 8 //prompt("Boba Fett's base attack.");
+	TwoCountAt = 7 //prompt("Boba Fett's counter attack.");
 
-	ThreeHealth = 70 //prompt("Anakin's health.");
-	ThreeBaseAt = 4 //prompt("Anakin's base attack.");
-	ThreeCountAt = prompt("Anakin's counter attack.");
+	ThreeHealth = 150 //prompt("Anakin's health.");
+	ThreeBaseAt = 9 //prompt("Anakin's base attack.");
+	ThreeCountAt = 20 //prompt("Anakin's counter attack.");
 
-	FourHealth = 80 //prompt("Yoda's health.");
-	FourBaseAt = 5 //prompt("Yoda's base attack.");
-//	FourCountAt = prompt("Yoda's count attack.");
+	FourHealth = 180 //prompt("Yoda's health.");
+	FourBaseAt = 10 //prompt("Yoda's base attack.");
+	FourCountAt = 25 //prompt("Yoda's count attack.");
 
 
 	// This simulates game plays in order to test if the above values will work in the context of the game.
@@ -73,13 +73,14 @@ while ( true ) {
 
 		// This checks if character one can go on to defeat character four.
 		while ( OneTestHealth > 0 && FourTestHealth > 0) {
+			alert(OneTestStrength);
 			FourTestHealth = FourTestHealth - OneTestStrength;
 			OneTestStrength = OneTestStrength * 2;
 			OneTestHealth = OneTestHealth - FourCountAt;
 		}
 
 		if ( OneTestHealth > FourTestHealth) {
-			oneDefeatTwo = true;
+			oneDefeatFour = true;
 		}
 
 		// This checks if character four can initially lose to character three.
@@ -130,9 +131,14 @@ while ( true ) {
 			var seedValues = [OneHealth, OneBaseAt, OneCountAt, TwoHealth, TwoBaseAt, TwoCountAt, ThreeHealth, ThreeBaseAt, ThreeCountAt, FourHealth, FourBaseAt, FourCountAt];
 			console.log(seedValues);
 			break;
-	} //else {
-		//alert("Those values don't work.");
-	//}
+	} else {
+		alert("Those values don't work.");
+		console.log(oneDefeatTwo);
+		console.log(oneDefeatThree);
+		console.log(oneDefeatFour);
+		console.log(fourLoseThree);
+		break;
+	}
 }
 alert("Not in for loop.");
 
