@@ -1,154 +1,3 @@
-// Functionality to dynamically generate health scores, base attack scores and counter attack scores based on the specifications of this game. 
-// Generating these values dynamically will ensure that every game is slightly different. 
-
-// This loop runs until the if statement gets the conditions it needs and breaks the loop.
-while ( true ) {
-	// This section generates a lot of random numbers as possible values for the various characters. Organizationally the idea is lower characters are traditionally less powerful Star Wars characters. IE-- Jar Jar shouldn't be stroger than Yoda. 
-//	OneHealth = Math.floor((Math.random() * 100) + 1);
-//	OneBaseAt = Math.floor((Math.random() * 20) + 1);
-//	OneCountAt = Math.floor((Math.random() * 30) + 1);
-
-//	TwoHealth = Math.floor((Math.random() * 100) + 1);
-//	TwoBaseAt = Math.floor((Math.random() * 10) + 1);
-//	TwoCountAt = Math.floor((Math.random() * 30) + 1);
-
-//	ThreeHealth = Math.floor((Math.random() * 125) + 1);
-//	ThreeBaseAt = Math.floor((Math.random() * 10) + 1);
-//	ThreeCountAt = Math.floor((Math.random() * 30) + 1);
-
-//	FourHealth = Math.floor((Math.random() * 125) + 1);
-//	FourBaseAt = Math.floor((Math.random() * 20) + 1);
-//	FourCountAt = Math.floor((Math.random() * 30) + 1);
-
-
-	OneHealth = 100 //prompt("Jar Jar's health.");
-	OneBaseAt = 13 //prompt("Jar Jar's base attack.");
-	OneCountAt = 5 //prompt("Jar Jar's counter attack.");
-
-	TwoHealth = 120 //prompt("Boba Fett's health.");
-	TwoBaseAt = 14 //prompt("Boba Fett's base attack.");
-	TwoCountAt = 7 //prompt("Boba Fett's counter attack.");
-
-	ThreeHealth = 140 //prompt("Anakin's health.");
-	ThreeBaseAt = 15 //prompt("Anakin's base attack.");
-	ThreeCountAt = 23 //prompt("Anakin's counter attack.");
-
-	FourHealth = 160 //prompt("Yoda's health.");
-	FourBaseAt = 16 //prompt("Yoda's base attack.");
-	FourCountAt = 24 //prompt("Yoda's count attack.");
-
-
-	// This simulates game plays in order to test if the above values will work in the context of the game.
-		var OneTestHealth = OneHealth;
-		var OneTestStrength = OneBaseAt;
-		var TwoTestHealth = TwoHealth;
-		var ThreeTestHealth = ThreeHealth;
-		var FourTestHealth = FourHealth;
-		var oneDefeatTwo = false;
-		var oneDefeatThree = false;
-		var oneDefeatFour = false;
-		var fourLoseThree = false;
-
-		// This checks if character one can initially defeat character two.
-		while ( OneTestHealth > 0 && TwoTestHealth > 0) {
-			TwoTestHealth = TwoTestHealth - OneTestStrength;
-			OneTestStrength = OneTestStrength + OneBaseAt;
-			OneTestHealth = OneTestHealth - TwoCountAt;
-		}
-
-		if ( OneTestHealth > TwoTestHealth) {
-			oneDefeatTwo = true;
-		}
-
-		// This checks if character one can go on to defeat character three.
-		while ( OneTestHealth > 0 && ThreeTestHealth > 0) {
-			ThreeTestHealth = ThreeTestHealth - OneTestStrength;
-			OneTestStrength = OneTestStrength + OneBaseAt;
-			OneTestHealth = OneTestHealth - ThreeCountAt;
-		}
-
-		if ( OneTestHealth > ThreeTestHealth) {
-			oneDefeatThree = true;
-		}
-
-		// This checks if character one can go on to defeat character four.
-		while ( OneTestHealth > 0 && FourTestHealth > 0) {
-			FourTestHealth = FourTestHealth - OneTestStrength;
-			OneTestStrength = OneTestStrength + OneBaseAt;
-			OneTestHealth = OneTestHealth - FourCountAt;
-		}
-
-		if ( OneTestHealth > FourTestHealth) {
-			oneDefeatFour = true;
-		}
-
-		// This checks if character four can initially lose to character three.
-		ThreeTestHealth = ThreeHealth;
-		FourTestHealth = FourHealth;
-		FourTestStrength = FourBaseAt;
-
-		while ( FourTestHealth > 0 && ThreeTestHealth > 0) {
-			console.log("Four's strength: " + FourTestStrength);
-			console.log("Four health: " + FourTestHealth);
-			console.log("Three health: " + ThreeTestHealth);
-			ThreeTestHealth = ThreeTestHealth - FourTestStrength;
-			FourTestStrength = FourTestStrength + FourBaseAt;
-			FourTestHealth = FourTestHealth - ThreeCountAt;
-		}
-
-		if ( FourTestHealth < ThreeTestHealth) {
-			fourLoseThree = true;
-			console.log("Four health: " + FourTestHealth);
-			console.log("Three health: " + ThreeTestHealth);
-		} else {
-			console.log("Four health: " + FourTestHealth);
-			console.log("Three health: " + ThreeTestHealth);
-		}
-
-	if (
-		//This part checks to see if the numbers generated will work for the game. 
-
-			//Characters one, two, three and four must be in order from weakest to strongest. 
-			(
-				OneHealth < TwoHealth &&
-				OneBaseAt < TwoBaseAt &&
-				OneCountAt < TwoCountAt &&
-
-				TwoHealth < ThreeHealth &&
-				TwoBaseAt < ThreeBaseAt &&
-				TwoCountAt < ThreeCountAt &&
-
-				ThreeHealth < FourHealth &&
-				ThreeBaseAt < FourBaseAt &&
-				ThreeCountAt < FourCountAt
-			) && (
-
-				//Weakest character must be able to win. 
-				oneDefeatTwo === true &&
-				oneDefeatThree === true &&
-				oneDefeatFour === true &&
-				fourLoseThree === true
-			)
-			
-
-			//Strongest character must be able to lose.
-		) {
-		//Functionality that runs if above conditions are met.
-			alert("Game conditions met.");
-			var seedValues = [OneHealth, OneBaseAt, OneCountAt, TwoHealth, TwoBaseAt, TwoCountAt, ThreeHealth, ThreeBaseAt, ThreeCountAt, FourHealth, FourBaseAt, FourCountAt];
-			console.log(seedValues);
-			break;
-	} else {
-//		alert("Those values don't work.");
-		console.log(oneDefeatTwo);
-		console.log(oneDefeatThree);
-		console.log(oneDefeatFour);
-		console.log(fourLoseThree);
-//		break;
-	}
-}
-alert("Not in for loop.");
-
 // This object constructor defines the format by which character information will be organized.
 function character(name, healthPoints, attackPower, counterAttackPower, imageSource) {
     this.name = name;
@@ -158,4 +7,44 @@ function character(name, healthPoints, attackPower, counterAttackPower, imageSou
     this.imageSource = imageSource;
 }
 
-var jarJar = new character("Jar Jar", 50, 5, );
+// I had difficulty coming up with numbers met the qualifications of the game. IE-- Weakest character could always win, strongest could always lose, etc. After spending many hours trying to develop and automated way to seed numbers to the game, I instead borrowed numbers from a similar game I found online. I figured it was more important to move on to the actual coding. 
+var mace = new character("Mace Windu", 160, 10, 20, "mace.png");
+var boba = new character("Boba Fett", 130, 15, 30, "boba.jpg");
+var anakin = new character("Anakin", 180, 7, 15, "anakin.jpg");
+var yoda = new character("Yoda", 180, 15, 25, "yoda.jpg");
+var R2D2 = new character("R2D2", 110, 12, 20, "r2d2.png");
+var jarJar = new character("Jar Jar", 100, 12, 24, "jar-jar.jpg");
+
+function generateImagePath(imageName){
+	var imagePath =  "assets/images/" + imageName;
+	return imagePath;
+}
+
+// This is random code I pasted in so my project would look less empty.
+	//	OneHealth = Math.floor((Math.random() * 100) + 1);
+	//	OneBaseAt = Math.floor((Math.random() * 20) + 1);
+	//	OneCountAt = Math.floor((Math.random() * 30) + 1);
+
+	//	TwoHealth = Math.floor((Math.random() * 100) + 1);
+	//	TwoBaseAt = Math.floor((Math.random() * 10) + 1);
+	//	TwoCountAt = Math.floor((Math.random() * 30) + 1);
+
+	//	ThreeHealth = Math.floor((Math.random() * 125) + 1);
+	//	ThreeBaseAt = Math.floor((Math.random() * 10) + 1);
+	//	ThreeCountAt = Math.floor((Math.random() * 30) + 1);
+
+	//	FourHealth = Math.floor((Math.random() * 125) + 1);
+	//	FourBaseAt = Math.floor((Math.random() * 20) + 1);
+	//	FourCountAt = Math.floor((Math.random() * 30) + 1);
+
+	//	TwoHealth = Math.floor((Math.random() * 100) + 1);
+	//	TwoBaseAt = Math.floor((Math.random() * 10) + 1);
+	//	TwoCountAt = Math.floor((Math.random() * 30) + 1);
+
+	//	ThreeHealth = Math.floor((Math.random() * 125) + 1);
+	//	ThreeBaseAt = Math.floor((Math.random() * 10) + 1);
+	//	ThreeCountAt = Math.floor((Math.random() * 30) + 1);
+
+	//	FourHealth = Math.floor((Math.random() * 125) + 1);
+	//	FourBaseAt = Math.floor((Math.random() * 20) + 1);
+	//	FourCountAt = Math.floor((Math.random() * 30) + 1);
