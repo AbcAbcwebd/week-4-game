@@ -1,0 +1,13 @@
+.character-tile {
+	max-width: 50px;
+	background: gray;
+}
+
+.character-image {
+	max-width: 80%;
+}
+
+p {
+	font-size: 9px;
+	text-align: center;
+}

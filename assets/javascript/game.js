@@ -20,31 +20,7 @@ function generateImagePath(imageName){
 	return imagePath;
 }
 
-// This is random code I pasted in so my project would look less empty.
-	//	OneHealth = Math.floor((Math.random() * 100) + 1);
-	//	OneBaseAt = Math.floor((Math.random() * 20) + 1);
-	//	OneCountAt = Math.floor((Math.random() * 30) + 1);
-
-	//	TwoHealth = Math.floor((Math.random() * 100) + 1);
-	//	TwoBaseAt = Math.floor((Math.random() * 10) + 1);
-	//	TwoCountAt = Math.floor((Math.random() * 30) + 1);
-
-	//	ThreeHealth = Math.floor((Math.random() * 125) + 1);
-	//	ThreeBaseAt = Math.floor((Math.random() * 10) + 1);
-	//	ThreeCountAt = Math.floor((Math.random() * 30) + 1);
-
-	//	FourHealth = Math.floor((Math.random() * 125) + 1);
-	//	FourBaseAt = Math.floor((Math.random() * 20) + 1);
-	//	FourCountAt = Math.floor((Math.random() * 30) + 1);
-
-	//	TwoHealth = Math.floor((Math.random() * 100) + 1);
-	//	TwoBaseAt = Math.floor((Math.random() * 10) + 1);
-	//	TwoCountAt = Math.floor((Math.random() * 30) + 1);
-
-	//	ThreeHealth = Math.floor((Math.random() * 125) + 1);
-	//	ThreeBaseAt = Math.floor((Math.random() * 10) + 1);
-	//	ThreeCountAt = Math.floor((Math.random() * 30) + 1);
-
-	//	FourHealth = Math.floor((Math.random() * 125) + 1);
-	//	FourBaseAt = Math.floor((Math.random() * 20) + 1);
-	//	FourCountAt = Math.floor((Math.random() * 30) + 1);
+// This function creates character tiles to add to the various sections. 
+function generateTile(character_name) {
+	
+}
