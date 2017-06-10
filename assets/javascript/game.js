@@ -19,8 +19,13 @@
 	var jarJar = new character("Jar Jar", 100, 12, 24, "jar-jar.jpg", "jar-jar");
 
 	// Other global variables
+
+	//This array pair allows the program to link a clicked button with the correct object. 
+	var characterHTMLid = ["maceTile", "bobaTile", "anakinTile", "yodaTile", "R2D2Tile", "jarJarTile"];
 	var characterArray = [mace, boba, anakin, yoda, R2D2, jarJar];
+
 	var yourCharacter = null;
+	var yourCharacterIndex = -1;
 
 
 
@@ -31,13 +36,26 @@
 		return characterTile;
 	}
 
-	function initiatePossibleChars(){
+	// This functionality populates a div with tiles of all the characters. Characters are then deleted as necesary. 
+	// The skip input allows the function to skip the ID of whatever character the player has selected for him or herself. 
+	function initiatePossibleChars(parentElement, skip){
 		for (var i = 0; i < characterArray.length; i++){
-			//var div = document.createElement('div');
-			//document.getElementById("possible-characters").appendChild(generateTile(characterArray[i]));
-			$('#possible-characters')
-				.append(generateTile(characterArray[i]));
+			if (i !== skip) {
+				$(parentElement)
+					.append(generateTile(characterArray[i]));
+			};
 		};
+	};
+
+	// This is what runs when a player selects a character to play as.
+	function characterSelected(yourCharacter){
+	  	$( "#possible-characters" ).empty();
+	  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
+	  	initiatePossibleChars('#attackable', yourCharacterIndex);
+	  	//yourCharacterID = "'#" + yourCharacter + "'";
+	  	// characterElement = $( yourCharacterID );
+	  	 //console.log(characterElement);
+	  	//$( yourCharacterID ).remove();
 	};
 
 $(document).ready(function() {
@@ -47,7 +65,7 @@ $(document).ready(function() {
 	$(".character-tile").click(function(){
 	  if (yourCharacter === null) {
 	  	yourCharacter = this.id;
-	  	$( "#possible-characters" ).empty();
+	  	characterSelected(yourCharacter);
 	  }
 	});
 
