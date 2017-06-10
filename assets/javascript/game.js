@@ -109,15 +109,10 @@ while ( true ) {
 		) {
 		//Functionality that runs if above conditions are met.
 			alert("Game conditions met.");
-			console.log();
+			var seedValues = [OneHealth, OneBaseAt, OneCountAt, TwoHealth, TwoBaseAt, TwoCountAt, ThreeHealth, ThreeBaseAt, ThreeCountAt, FourHealth, FourBaseAt, FourCountAt];
+			console.log(seedValues);
 			break;
 	}
-	var counterNumber = 0;
-	counterNumber++;
-	console.log(counterNumber);
-	//if ( counterNumber = 9 ) {
-	//	break;
-	//}
 }
 alert("Not in for loop.");
 
