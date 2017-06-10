@@ -19,32 +19,105 @@ while ( true ) {
 	FourHealth = Math.floor((Math.random() * 125) + 1);
 	FourBaseAt = Math.floor((Math.random() * 10) + 1);
 	FourCountAt = Math.floor((Math.random() * 30) + 1);
+
+	// This simulates game plays in order to test if the above values will work in the context of the game.
+		var OneTestHealth = OneHealth;
+		var OneTestStrength = OneBaseAt;
+		var TwoTestHealth = TwoHealth;
+		var ThreeTestHealth = ThreeHealth;
+		var FourTestHealth = FourHealth;
+		var oneDefeatTwo = false;
+		var oneDefeatThree = false;
+		var oneDefeatFour = false;
+		var fourLoseThree = false;
+
+		// This checks if character one can initially defeat character two.
+		while ( OneTestHealth > 0 && TwoTestHealth > 0) {
+			TwoTestHealth = TwoTestHealth - OneTestStrength;
+			OneTestStrength = OneTestStrength * 2;
+			OneTestHealth = OneTestHealth - TwoCountAt;
+		}
+
+		if ( OneTestHealth > TwoTestHealth) {
+			oneDefeatTwo = true;
+		}
+
+		// This checks if character one can go on to defeat character three.
+		while ( OneTestHealth > 0 && ThreeTestHealth > 0) {
+			ThreeTestHealth = ThreeTestHealth - OneTestStrength;
+			OneTestStrength = OneTestStrength * 2;
+			OneTestHealth = OneTestHealth - ThreeCountAt;
+		}
+
+		if ( OneTestHealth > ThreeTestHealth) {
+			oneDefeatThree = true;
+		}
+
+		// This checks if character one can go on to defeat character four.
+		while ( OneTestHealth > 0 && FourTestHealth > 0) {
+			FourTestHealth = FourTestHealth - OneTestStrength;
+			OneTestStrength = OneTestStrength * 2;
+			OneTestHealth = OneTestHealth - FourCountAt;
+		}
+
+		if ( OneTestHealth > FourTestHealth) {
+			oneDefeatTwo = true;
+		}
+
+		// This checks if character four can initially lose to character three.
+		ThreeTestHealth = ThreeHealth;
+		FourTestHealth = FourHealth;
+		FourTestStrength = FourBaseAt;
+
+		while ( FourTestHealth > 0 && ThreeTestHealth > 0) {
+			ThreeTestHealth = ThreeTestHealth - FourTestStrength;
+			FourTestStrength = FourTestStrength * 2;
+			FourTestHealth = FourTestHealth - ThreeCountAt;
+		}
+
+		if ( FourTestHealth < ThreeTestHealth) {
+			fourLoseThree = true;
+		}
+
 	if (
 		//This part checks to see if the numbers generated will work for the game. 
 
-		//Characters one and two must be weaker than characters three and four. 
-		OneHealth < ThreeHealth &&
-		OneHealth < FourHealth &&
-		OneBaseAt < ThreeBaseAt &&
-		OneBaseAt < FourBaseAt &&
-		OneCountAt < ThreeCountAt &&
-		OneCountAt < FourCountAt &&
+			//Characters one, two, three and four must be in order from weakest to strongest. 
+			(
+				OneHealth < TwoHealth &&
+				OneBaseAt < TwoBaseAt &&
+				OneCountAt < TwoCountAt &&
 
-		TwoHealth < ThreeHealth &&
-		TwoHealth < FourHealth &&
-		TwoBaseAt < ThreeBaseAt &&
-		TwoBaseAt < FourBaseAt &&
-		TwoCountAt < ThreeCountAt &&
-		TwoCountAt < FourCountAt &&
+				TwoHealth < ThreeHealth &&
+				TwoBaseAt < ThreeBaseAt &&
+				TwoCountAt < ThreeCountAt &&
 
-		//Weaker character must be able to win. 
+				ThreeHealth < FourHealth &&
+				ThreeBaseAt < FourBaseAt &&
+				ThreeCountAt < FourCountAt
+			) && (
 
-		//Strongest character must be able to lose.
+				//Weakest character must be able to win. 
+				oneDefeatTwo === true &&
+				oneDefeatThree === true &&
+				oneDefeatFour === true &&
+				fourLoseThree === true
+			)
+			
+
+			//Strongest character must be able to lose.
 		) {
 		//Functionality that runs if above conditions are met.
-		alert("Conditions met.");
-		break;
+			alert("Game conditions met.");
+			console.log();
+			break;
 	}
+	var counterNumber = 0;
+	counterNumber++;
+	console.log(counterNumber);
+	//if ( counterNumber = 9 ) {
+	//	break;
+	//}
 }
 alert("Not in for loop.");
 
