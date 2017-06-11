@@ -51,6 +51,7 @@
 				attackableCharacters.push(i);
 			};
 		};
+		console.log(attackableCharacters);
 	};
 
 	// This is what runs when a player selects a character to play as.
@@ -63,8 +64,10 @@
 	// This functionality helps maintain the array of indexes the player can attack. 
 	//Specifically, this functionality removes indexs from the attackableCharacters array.
 	function removeIndexAttackables(index){
+		console.log(attackableCharacters);
 		var localIndex = attackableCharacters.indexOf(index);
 		attackableCharacters.splice(localIndex, 1);
+		console.log(attackableCharacters);
 	}
 
 	// This reloads character tiles during a fight. 
@@ -81,7 +84,8 @@
 
 	// What happens if the player wins a fight.
 	function fightWon(){
-		removeIndexAttackables(defenderIndex);
+//		removeIndexAttackables(defenderIndex);
+		console.log(attackableCharacters);
 		if ( attackableCharacters.length > 0 ) {
 			$("#display-1").text("You have defeated " + characterArray[defenderIndex].name);
 			$("#display-2").text("Pick your next opponent.");
