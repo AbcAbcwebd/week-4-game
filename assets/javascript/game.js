@@ -123,35 +123,44 @@ $(document).ready(function() {
 
 	// Attack button functionality. 
 	$(document).delegate('#attack-button', 'click', function(){
-		characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
-		$("#display-1").text("You attacked " + characterArray[defenderIndex].name + " for " + yourAttackPower + " damage.");
-		yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
+		console.log(defender);
+		if ( defender != null ) {
+			console.log("Primary function running.")
+			characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
+			$("#display-1").text("You attacked " + characterArray[defenderIndex].name + " for " + yourAttackPower + " damage.");
+			yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
 
-		// This checks to see if the player has won. 
-		if ( characterArray[defenderIndex].healthPoints < 1){
+			// This checks to see if the player has won. 
+			if ( characterArray[defenderIndex].healthPoints < 1){
 
-			// Player has won
-			fightWon();
+				// Player has won
+				fightWon();
 
+			} else {
+
+				// Player gets attacked
+				characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
+				$("#display-2").text(characterArray[defenderIndex].name + " attacked you back for " + characterArray[defenderIndex].counterAttackPower + " damage.");
+
+			}
+
+			// Checks to see if player has lost.
+			if ( characterArray[yourCharacterIndex].healthPoints < 1 ){
+
+				//Player loses
+				$("#display-1").text("You have been killed.");
+				$("#display-2").empty();
+
+
+			}
+
+			fightReload();
 		} else {
-
-			// Player gets attacked
-			characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
-			$("#display-2").text(characterArray[defenderIndex].name + " attacked you back for " + characterArray[defenderIndex].counterAttackPower + " damage.");
-
-		}
-
-		// Checks to see if player has lost.
-		if ( characterArray[yourCharacterIndex].healthPoints < 1 ){
-
-			//Player loses
-			$("#display-1").text("You have been killed.");
+			console.log("Secondary function running.");
+			$("#display-1").text("Please pick someone to fight.");
 			$("#display-2").empty();
-
-
 		}
-
-		fightReload();
+		console.log("Core functionality passed.")
 	});
 
 });
