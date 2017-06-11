@@ -82,7 +82,13 @@
 	// What happens if the player wins a fight.
 	function fightWon(){
 		removeIndexAttackables(defenderIndex);
-		console.log(attackableCharacters);
+		if ( attackableCharacters.length > 0 ) {
+			$("#display-1").text("You have defeated " + characterArray[defenderIndex].name);
+			$("#display-2").text("Pick your next opponent.");
+		} else {
+			$("#display-1").text("You have won the game!");
+			$("#display-2").empty();
+		}
 		$("#defender").empty();
 		defender = null;
 		defenderIndex = -2;
@@ -118,6 +124,7 @@ $(document).ready(function() {
 	// Attack button functionality. 
 	$(document).delegate('#attack-button', 'click', function(){
 		characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
+		$("#display-1").text("You attacked " + characterArray[defenderIndex].name + " for " + yourAttackPower + " damage.");
 		yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
 
 		// This checks to see if the player has won. 
@@ -130,6 +137,7 @@ $(document).ready(function() {
 
 			// Player gets attacked
 			characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
+			$("#display-2").text(characterArray[defenderIndex].name + " attacked you back for " + characterArray[defenderIndex].counterAttackPower + " damage.");
 
 		}
 
@@ -137,6 +145,9 @@ $(document).ready(function() {
 		if ( characterArray[yourCharacterIndex].healthPoints < 1 ){
 
 			//Player loses
+			$("#display-1").text("You have been killed.");
+			$("#display-2").empty();
+
 
 		}
 
