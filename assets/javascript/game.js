@@ -55,16 +55,9 @@
 	  	initiatePossibleChars('#attackable', yourCharacterIndex);
 	};
 
-	// This is what runs when a player selects a character to fight. 
-	// Not used currently
 
 $(document).ready(function() {
 
-
-	// Click functionality for selecting your player
-	//$(".character-tile").click(function(){
-	//$('.character-tile').live('click', function(){
-	//$('.character-tile').on('click', '.option', function() {
 	$(document).delegate('.character-tile', 'click', function(){
 		console.log(yourCharacter);
 	  if (yourCharacter === null) {
@@ -80,16 +73,16 @@ $(document).ready(function() {
 	  // Once your character is selected, this lets you pick who to fight. 
 	  } else if ( true ) {
 	  		console.log("Defender functionality running.");
-		//  	defender = this.id;
-		//  	console.log(defender);
-		//  	defenderIndex = characterHTMLid.indexOf(defender);
-		//  	console.log(defenderIndex);
+		  	defender = this.id;
+		  	console.log(defender);
+		  	defenderIndex = characterHTMLid.indexOf(defender);
+		  	console.log(defenderIndex);
 
-		  	//$( this ).remove();
+		  	$( this ).remove();
 
 		  	// Places your chosen enemies thumbnail in the correct div.
-		//  	$("#defender")
-		//		.append(generateTile(characterArray[defenderIndex]));
+		  	$("#defender")
+				.append(generateTile(characterArray[defenderIndex]));
 	  };
 	});
 
