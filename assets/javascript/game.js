@@ -58,7 +58,6 @@
 	  	$( "#possible-characters" ).empty();
 	  	initiatePossibleChars('#attackable', yourCharacterIndex);
 	  	yourAttackPower = characterArray[yourCharacterIndex].attackPower
-	  	console.log(yourAttackPower);
 	};
 
 	// This functionality helps maintain the array of indexes the player can attack. 
@@ -66,7 +65,17 @@
 	function removeIndexAttackables(index){
 		var localIndex = attackableCharacters.indexOf(index);
 		attackableCharacters.splice(localIndex, 1);
-		console.log(attackableCharacters);
+	}
+
+	// This reloads character tiles during a fight. 
+	function fightReload(){
+		$("#your-character").empty();
+		$("#your-character")
+				.append(generateTile(characterArray[yourCharacterIndex]));
+
+		$("#defender").empty();
+		$("#defender")
+				.append(generateTile(characterArray[defenderIndex]));
 	}
 
 
@@ -83,7 +92,7 @@ $(document).ready(function() {
 				.append(generateTile(characterArray[yourCharacterIndex]));
 
 	  // Once your character is selected, this lets you pick who to fight. 
-	  } else if ( true ) {
+	  } else if ( defender === null ) {
 		  	defender = this.id;
 		  	defenderIndex = characterHTMLid.indexOf(defender);
 
@@ -100,6 +109,7 @@ $(document).ready(function() {
 		characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
 		yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
 		characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
+		fightReload();
 	});
 
 });
