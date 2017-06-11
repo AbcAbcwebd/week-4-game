@@ -123,9 +123,7 @@ $(document).ready(function() {
 
 	// Attack button functionality. 
 	$(document).delegate('#attack-button', 'click', function(){
-		console.log(defender);
 		if ( defender != null ) {
-			console.log("Primary function running.")
 			characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
 			$("#display-1").text("You attacked " + characterArray[defenderIndex].name + " for " + yourAttackPower + " damage.");
 			yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
@@ -156,11 +154,9 @@ $(document).ready(function() {
 
 			fightReload();
 		} else {
-			console.log("Secondary function running.");
 			$("#display-1").text("Please pick someone to fight.");
 			$("#display-2").empty();
 		}
-		console.log("Core functionality passed.")
 	});
 
 });
