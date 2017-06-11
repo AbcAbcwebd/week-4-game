@@ -26,6 +26,8 @@
 
 		var yourCharacter = null;
 		var yourCharacterIndex = -2;
+		var defender = null;
+		var defenderIndex = -2;
 
 
 
@@ -50,27 +52,45 @@
 	// This is what runs when a player selects a character to play as.
 	function characterSelected(yourCharacter){
 	  	$( "#possible-characters" ).empty();
-	  	//yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
 	  	initiatePossibleChars('#attackable', yourCharacterIndex);
 	};
+
+	// This is what runs when a player selects a character to fight. 
+	// Not used currently
 
 $(document).ready(function() {
 
 
 	// Click functionality for selecting your player
-	$(".character-tile").click(function(){
+	//$(".character-tile").click(function(){
+	//$('.character-tile').live('click', function(){
+	//$('.character-tile').on('click', '.option', function() {
+	$(document).delegate('.character-tile', 'click', function(){
+		console.log(yourCharacter);
 	  if (yourCharacter === null) {
-	  	yourCharacter = this.id;
-	  	console.log(this.id);
-	  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
-	  	characterSelected(yourCharacter);
-	  	console.log(yourCharacterIndex);
+		  	yourCharacter = this.id;
+		  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
+		  	characterSelected(yourCharacter);
 
-	  	// Places your character's thumbnail in the correct DIV. 
+		  	// Places your character's thumbnail in the correct DIV. 
+			$("#your-character")
+				.append(generateTile(characterArray[yourCharacterIndex]));
+				console.log(yourCharacter);
 
-	  	$("#your-character")
-			.append(generateTile(characterArray[yourCharacterIndex]));
-	  }
+	  // Once your character is selected, this lets you pick who to fight. 
+	  } else if ( true ) {
+	  		console.log("Defender functionality running.");
+		//  	defender = this.id;
+		//  	console.log(defender);
+		//  	defenderIndex = characterHTMLid.indexOf(defender);
+		//  	console.log(defenderIndex);
+
+		  	//$( this ).remove();
+
+		  	// Places your chosen enemies thumbnail in the correct div.
+		//  	$("#defender")
+		//		.append(generateTile(characterArray[defenderIndex]));
+	  };
 	});
 
 });
