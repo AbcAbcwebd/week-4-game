@@ -20,12 +20,12 @@
 
 	// Other global variables
 
-	//This array pair allows the program to link a clicked button with the correct object. 
-	var characterHTMLid = ["maceTile", "bobaTile", "anakinTile", "yodaTile", "R2D2Tile", "jarJarTile"];
-	var characterArray = [mace, boba, anakin, yoda, R2D2, jarJar];
+		//This array pair allows the program to link a clicked button with the correct object. 
+		var characterHTMLid = ["maceTile", "bobaTile", "anakinTile", "yodaTile", "r2d2Tile", "jar-jarTile"];
+		var characterArray = [mace, boba, anakin, yoda, R2D2, jarJar];
 
-	var yourCharacter = null;
-	var yourCharacterIndex = -1;
+		var yourCharacter = null;
+		var yourCharacterIndex = -2;
 
 
 
@@ -50,12 +50,8 @@
 	// This is what runs when a player selects a character to play as.
 	function characterSelected(yourCharacter){
 	  	$( "#possible-characters" ).empty();
-	  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
+	  	//yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
 	  	initiatePossibleChars('#attackable', yourCharacterIndex);
-	  	//yourCharacterID = "'#" + yourCharacter + "'";
-	  	// characterElement = $( yourCharacterID );
-	  	 //console.log(characterElement);
-	  	//$( yourCharacterID ).remove();
 	};
 
 $(document).ready(function() {
@@ -65,7 +61,15 @@ $(document).ready(function() {
 	$(".character-tile").click(function(){
 	  if (yourCharacter === null) {
 	  	yourCharacter = this.id;
+	  	console.log(this.id);
+	  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
 	  	characterSelected(yourCharacter);
+	  	console.log(yourCharacterIndex);
+
+	  	// Places your character's thumbnail in the correct DIV. 
+
+	  	$("#your-character")
+			.append(generateTile(characterArray[yourCharacterIndex]));
 	  }
 	});
 
