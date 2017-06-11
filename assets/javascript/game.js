@@ -72,10 +72,20 @@
 		$("#your-character").empty();
 		$("#your-character")
 				.append(generateTile(characterArray[yourCharacterIndex]));
+		if ( defenderIndex > -1 ) {
+			$("#defender").empty();
+			$("#defender")
+					.append(generateTile(characterArray[defenderIndex]));
+		};
+	}
 
+	// What happens if the player wins a fight.
+	function fightWon(){
+		removeIndexAttackables(defenderIndex);
+		console.log(attackableCharacters);
 		$("#defender").empty();
-		$("#defender")
-				.append(generateTile(characterArray[defenderIndex]));
+		defender = null;
+		defenderIndex = -2;
 	}
 
 
@@ -105,10 +115,31 @@ $(document).ready(function() {
 	  };
 	});
 
+	// Attack button functionality. 
 	$(document).delegate('#attack-button', 'click', function(){
 		characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
 		yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
-		characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
+
+		// This checks to see if the player has won. 
+		if ( characterArray[defenderIndex].healthPoints < 1){
+
+			// Player has won
+			fightWon();
+
+		} else {
+
+			// Player gets attacked
+			characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
+
+		}
+
+		// Checks to see if player has lost.
+		if ( characterArray[yourCharacterIndex].healthPoints < 1 ){
+
+			//Player loses
+
+		}
+
 		fightReload();
 	});
 
