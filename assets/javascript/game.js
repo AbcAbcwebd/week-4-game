@@ -28,6 +28,8 @@
 		var yourCharacterIndex = -2;
 		var defender = null;
 		var defenderIndex = -2;
+		var yourAttackPower = 0;
+		var attackableCharacters = [];
 
 
 
@@ -41,10 +43,12 @@
 	// This functionality populates a div with tiles of all the characters. Characters are then deleted as necesary. 
 	// The skip input allows the function to skip the ID of whatever character the player has selected for him or herself. 
 	function initiatePossibleChars(parentElement, skip){
+		attackableCharacters = [];
 		for (var i = 0; i < characterArray.length; i++){
 			if (i !== skip) {
 				$(parentElement)
 					.append(generateTile(characterArray[i]));
+				attackableCharacters.push(i);
 			};
 		};
 	};
@@ -53,7 +57,17 @@
 	function characterSelected(yourCharacter){
 	  	$( "#possible-characters" ).empty();
 	  	initiatePossibleChars('#attackable', yourCharacterIndex);
+	  	yourAttackPower = characterArray[yourCharacterIndex].attackPower
+	  	console.log(yourAttackPower);
 	};
+
+	// This functionality helps maintain the array of indexes the player can attack. 
+	//Specifically, this functionality removes indexs from the attackableCharacters array.
+	function removeIndexAttackables(index){
+		var localIndex = attackableCharacters.indexOf(index);
+		attackableCharacters.splice(localIndex, 1);
+		console.log(attackableCharacters);
+	}
 
 
 $(document).ready(function() {
@@ -74,6 +88,7 @@ $(document).ready(function() {
 		  	defenderIndex = characterHTMLid.indexOf(defender);
 
 		  	$( this ).remove();
+		  	removeIndexAttackables(defenderIndex);
 
 		  	// Places your chosen enemies thumbnail in the correct div.
 		  	$("#defender")
@@ -82,7 +97,9 @@ $(document).ready(function() {
 	});
 
 	$(document).delegate('#attack-button', 'click', function(){
-		console.log("Attack button works.")
+		characterArray[defenderIndex].healthPoints = characterArray[defenderIndex].healthPoints - yourAttackPower;
+		yourAttackPower = yourAttackPower + characterArray[yourCharacterIndex].attackPower; 
+		characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - characterArray[defenderIndex].counterAttackPower;
 	});
 
 });
