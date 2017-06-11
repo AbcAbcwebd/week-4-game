@@ -59,7 +59,6 @@
 $(document).ready(function() {
 
 	$(document).delegate('.character-tile', 'click', function(){
-		console.log(yourCharacter);
 	  if (yourCharacter === null) {
 		  	yourCharacter = this.id;
 		  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
@@ -68,15 +67,11 @@ $(document).ready(function() {
 		  	// Places your character's thumbnail in the correct DIV. 
 			$("#your-character")
 				.append(generateTile(characterArray[yourCharacterIndex]));
-				console.log(yourCharacter);
 
 	  // Once your character is selected, this lets you pick who to fight. 
 	  } else if ( true ) {
-	  		console.log("Defender functionality running.");
 		  	defender = this.id;
-		  	console.log(defender);
 		  	defenderIndex = characterHTMLid.indexOf(defender);
-		  	console.log(defenderIndex);
 
 		  	$( this ).remove();
 
@@ -84,6 +79,10 @@ $(document).ready(function() {
 		  	$("#defender")
 				.append(generateTile(characterArray[defenderIndex]));
 	  };
+	});
+
+	$(document).delegate('#attack-button', 'click', function(){
+		console.log("Attack button works.")
 	});
 
 });
