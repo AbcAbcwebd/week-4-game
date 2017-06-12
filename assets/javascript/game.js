@@ -14,8 +14,8 @@
 	var mace = new character("Mace Windu", 160, 10, 20, "mace.png", "mace");
 	var boba = new character("Boba Fett", 130, 15, 30, "boba.jpg", "boba");
 	var anakin = new character("Anakin", 180, 7, 15, "anakin.jpg", "anakin");
-	var yoda = new character("Yoda", 180, 15, 25, "yoda.jpg", "yoda");
-	var R2D2 = new character("R2D2", 125, 12, 20, "r2d2.png", "r2d2");
+	var yoda = new character("Yoda", 81, 15, 25, "yoda.jpg", "yoda");
+	var R2D2 = new character("R2D2", 110, 12, 20, "r2d2.png", "r2d2");
 	var jarJar = new character("Jar Jar", 100, 12, 24, "jar-jar.jpg", "jar-jar");
 
 	// Other global variables
@@ -101,6 +101,14 @@ $(document).ready(function() {
 		  	yourCharacter = this.id;
 		  	yourCharacterIndex = characterHTMLid.indexOf(yourCharacter);
 		  	characterSelected(yourCharacter);
+
+		  	// This functionality was added to ensure that players can win or lose as every character. Ideally this should be accomplihed using the base numbers, but as I was having trouble getting that to work, I added this as a work around.
+		  	if (yourCharacter === "r2d2Tile" || yourCharacter === "anakinTile" || yourCharacter === "jar-jarTile") {
+		  		characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints + 50;
+		  	} //else if (yourCharacter === "yodaTile") {
+		  		//characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - 99;
+		  	//}
+
 
 		  	// Places your character's thumbnail in the correct DIV. 
 			$("#your-character")
