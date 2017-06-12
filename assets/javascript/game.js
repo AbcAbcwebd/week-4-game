@@ -15,7 +15,7 @@
 	var boba = new character("Boba Fett", 130, 15, 30, "boba.jpg", "boba");
 	var anakin = new character("Anakin", 180, 7, 15, "anakin.jpg", "anakin");
 	var yoda = new character("Yoda", 180, 15, 25, "yoda.jpg", "yoda");
-	var R2D2 = new character("R2D2", 110, 12, 20, "r2d2.png", "r2d2");
+	var R2D2 = new character("R2D2", 125, 12, 20, "r2d2.png", "r2d2");
 	var jarJar = new character("Jar Jar", 100, 12, 24, "jar-jar.jpg", "jar-jar");
 
 	// Other global variables
