@@ -105,10 +105,7 @@ $(document).ready(function() {
 		  	// This functionality was added to ensure that players can win or lose as every character. Ideally this should be accomplihed using the base numbers, but as I was having trouble getting that to work, I added this as a work around.
 		  	if (yourCharacter === "r2d2Tile" || yourCharacter === "anakinTile" || yourCharacter === "jar-jarTile") {
 		  		characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints + 50;
-		  	} //else if (yourCharacter === "yodaTile") {
-		  		//characterArray[yourCharacterIndex].healthPoints = characterArray[yourCharacterIndex].healthPoints - 99;
-		  	//}
-
+		  	} 
 
 		  	// Places your character's thumbnail in the correct DIV. 
 			$("#your-character")
